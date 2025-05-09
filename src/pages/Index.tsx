@@ -10,7 +10,7 @@ const Index: React.FC = () => {
       
       <div className="w-full max-w-5xl mx-auto text-center space-y-8">
         <div className="space-y-2 md:space-y-4">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white">
+          <h1 className="font-poppins text-48px font-light text-white">
             Your Next <span className="font-bold">Gaming Idea</span>
           </h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
