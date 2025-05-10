@@ -1,11 +1,10 @@
-
 import React from "react";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuRadioGroup, 
-  DropdownMenuRadioItem, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
@@ -26,21 +25,21 @@ export const DropdownFilter: React.FC<DropdownFilterProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button 
-          variant="outline" 
-          className="bg-black/80 text-white border-none hover:bg-black/90 min-w-[180px] justify-between"
+        <Button
+          variant="outline"
+          className="bg-[#1E1E1E] text-white border-none hover:bg-[#1E1E1E] hover:text-white min-w-[180px] justify-between rounded-lg "
         >
           {label}
           <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-full min-w-[180px] bg-black/90 text-white border-none">
+      <DropdownMenuContent className="w-full min-w-[180px] bg-[#1E1E1E] text-white border-none">
         <DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>
           {options.map((option) => (
-            <DropdownMenuRadioItem 
-              key={option} 
+            <DropdownMenuRadioItem
+              key={option}
               value={option}
-              className="text-white hover:bg-white/10 cursor-pointer"
+              className="text-white cursor-pointer"
             >
               {option}
             </DropdownMenuRadioItem>
