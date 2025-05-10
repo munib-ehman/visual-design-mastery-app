@@ -13,8 +13,7 @@ const Index: React.FC = () => {
             Your Next <span className="font-semibold">Gaming Idea</span>
           </h1>
           <p className="font-jakarta text-lg md:text-xl text-white/90 max-w-3xl mx-auto font-thin tracking-tight ">
-            Describe your game vision in a few words and get a custom concept
-            instantly.
+          Describe your game idea and unlock tailored insights to bring it to life
           </p>
         </div>
 
