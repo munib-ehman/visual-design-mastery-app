@@ -4,44 +4,91 @@ import { toast } from "sonner";
 import DropdownFilter from "./DropdownFilter";
 import { Textarea } from "./ui/textarea";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Define genres and markets for the filters
 const genres = [
-  "Action",
-  "Adventure",
-  "RPG",
-  "Strategy",
-  "Simulation",
-  "Puzzle",
-  "Sports",
-  "Racing",
-  "Horror",
-  "Open World",
+  { label: "Action", value: "action" },
+  { label: "Adventure", value: "adventure" },
+  { label: "RPG", value: "rpg" },
+  { label: "Strategy", value: "strategy" },
+  { label: "Simulation", value: "simulation" },
+  { label: "Puzzle", value: "puzzle" },
+  { label: "Sports", value: "sports" },
+  { label: "Racing", value: "racing" },
+  { label: "Horror", value: "horror" },
+  { label: "Open World", value: "open-world" },
 ];
 
 const markets = [
-  "Mobile",
-  "PC",
-  "Console",
-  "VR/AR",
-  "Web Browser",
-  "Cross-platform",
+  { label: "United States", value: "us" },
+  { label: "United Kingdom", value: "gb" },
+  { label: "Canada", value: "ca" },
+  { label: "Australia", value: "au" },
+  { label: "Germany", value: "de" },
+  { label: "France", value: "fr" },
+  { label: "India", value: "in" },
+  { label: "Japan", value: "jp" },
+  { label: "South Korea", value: "kr" },
+  { label: "Brazil", value: "br" },
+  { label: "Mexico", value: "mx" },
+  { label: "Russia", value: "ru" },
+  { label: "Pakistan", value: "pk" },
+  { label: "Saudi Arabia", value: "sa" },
+  { label: "Indonesia", value: "id" },
+  { label: "Italy", value: "it" },
+  { label: "Spain", value: "es" },
+  { label: "Netherlands", value: "nl" },
+  { label: "Turkey", value: "tr" },
+  { label: "Philippines", value: "ph" },
+  { label: "Thailand", value: "th" },
+  { label: "Vietnam", value: "vn" },
+  { label: "Malaysia", value: "my" },
+  { label: "Egypt", value: "eg" },
+  { label: "Nigeria", value: "ng" },
+  { label: "South Africa", value: "za" },
 ];
 
-export const GameIdeaForm: React.FC = () => {
+type LoadingScreenProps = {
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const GameIdeaForm: React.FC<LoadingScreenProps> = ({
+  setIsLoading,
+}) => {
+  const navigate = useNavigate();
+
   const [concept, setConcept] = useState("");
-  const [genre, setGenre] = useState(genres[0]);
-  const [market, setMarket] = useState(markets[0]);
+  const [genre, setGenre] = useState("");
+  const [market, setMarket] = useState("");
+  const apiUrl = process.env.REACT_APP_API_URL;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!concept.trim()) {
       toast.error("Please enter a game concept");
       return;
     }
+    setIsLoading(true);
+    const payload = {
+      idea: concept,
+      genre: genre,
+      country: market,
+    };
 
-    toast.success("Game concept submitted successfully!");
+    const response = await fetch(`${apiUrl}/analyze`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+    navigate("/analytics", { state: { result } });
+    setIsLoading(false);
+
+    toast.success("Report Generated Successfully!");
 
     // In a real app, this would send the data to a backend or AI service
     console.log({

@@ -11,7 +11,7 @@ import { ChevronDown } from "lucide-react";
 
 interface DropdownFilterProps {
   label: string;
-  options: string[];
+  options: { label: string; value: string }[];
   value: string;
   onValueChange: (value: string) => void;
 }
@@ -33,15 +33,15 @@ export const DropdownFilter: React.FC<DropdownFilterProps> = ({
           <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-full min-w-[180px] bg-[#1E1E1E] text-white border-none">
+      <DropdownMenuContent className="w-full min-w-[180px] max-h-[300px] overflow-auto bg-[#1E1E1E] text-white border-none">
         <DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>
           {options.map((option) => (
             <DropdownMenuRadioItem
-              key={option}
-              value={option}
+              key={option.value}
+              value={option.value}
               className="text-white cursor-pointer"
             >
-              {option}
+              {option.label}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>
