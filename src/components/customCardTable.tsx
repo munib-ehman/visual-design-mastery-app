@@ -51,22 +51,22 @@ const CustomCardTable = ({ data }: SimilarGameConceptsCardProps) => {
               <TableHead className="text-white text-base font-bold">
                 Publisher
               </TableHead>
-              <TableHead className="text-white text-base text-right font-bold">
+              <TableHead className="text-white text-base  font-bold">
                 Total Installs
               </TableHead>
-              <TableHead className="text-white text-base text-right font-bold">
+              <TableHead className="text-white text-base  font-bold">
                 Last 30 Days Install
               </TableHead>
-              <TableHead className="text-white text-base text-right font-bold">
+              <TableHead className="text-white text-base font-bold">
                 Rating
               </TableHead>
-              <TableHead className="text-white text-base text-right font-bold">
-                Contain IP
+              <TableHead className="text-white text-base  font-bold">
+                Contain IAP
               </TableHead>
-              <TableHead className="text-white text-base text-right font-bold">
+              <TableHead className="text-white text-base  font-bold">
                 Similarity Index
               </TableHead>
-              <TableHead className="text-white text-base text-right font-bold">
+              <TableHead className="text-white text-base  font-bold">
                 Release Date
               </TableHead>
             </TableRow>

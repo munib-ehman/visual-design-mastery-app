@@ -1,5 +1,6 @@
 import CustomCardTable from "@/components/customCardTable";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import UniquenessCard from "@/components/UniquenessCard";
 import { formatNumber } from "@/lib/utils";
 import { ChartNoAxesColumn } from "lucide-react";
 import React from "react";
@@ -87,7 +88,7 @@ const Summary = ({ summary }: { summary: string }) => (
   <Card className="bg-[#1E1E1E]/50 rounded-xl text-white border-0">
     <CardContent className="p-7 h-full flex flex-col items-center ">
       <h3 className="text-2xl font-poppins font-black mb-2 bg-clip-text bg-gradient-to-t from-teal-200 to-white text-transparent">
-        Insights
+        Summery
       </h3>{" "}
       <p className="text-center text-white/80  mx-auto">{summary}</p>
     </CardContent>
@@ -114,9 +115,9 @@ const GameAnalysis = () => {
           </div>
 
           <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <RatingCard
+            <UniquenessCard
               label="Uniqueness"
-              value={result?.highestSimilarityIndex}
+              value={result?.averageUniqueIndex}
             />
             <RatingCard
               label="Competition"

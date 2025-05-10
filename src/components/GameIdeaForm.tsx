@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const genres = [
   { label: "Action", value: "action" },
   { label: "Adventure", value: "adventure" },
+  { label: "Casual", value: "casual" },
   { label: "RPG", value: "rpg" },
   { label: "Strategy", value: "strategy" },
   { label: "Simulation", value: "simulation" },
@@ -17,6 +18,7 @@ const genres = [
   { label: "Sports", value: "sports" },
   { label: "Racing", value: "racing" },
   { label: "Horror", value: "horror" },
+  { label: "Hyper-Casual", value: "Hyper-casual" },
   { label: "Open World", value: "open-world" },
 ];
 
@@ -61,7 +63,9 @@ export const GameIdeaForm: React.FC<LoadingScreenProps> = ({
   const [concept, setConcept] = useState("");
   const [genre, setGenre] = useState("");
   const [market, setMarket] = useState("");
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  console.log("url", apiUrl);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
