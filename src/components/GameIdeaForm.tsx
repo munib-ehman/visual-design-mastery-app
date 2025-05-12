@@ -65,41 +65,45 @@ export const GameIdeaForm: React.FC<LoadingScreenProps> = ({
   const [market, setMarket] = useState("");
   const apiUrl = import.meta.env.VITE_API_URL;
 
-  console.log("url", apiUrl);
-
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!concept.trim()) {
-      toast.error("Please enter a game concept");
-      return;
+    try {
+      e.preventDefault();
+      if (!concept.trim()) {
+        toast.error("Please enter a game concept");
+        return;
+      }
+      setIsLoading(true);
+      const payload = {
+        idea: concept,
+        genre: genre,
+        country: market,
+      };
+
+      const response = await fetch(`${apiUrl}/analyze`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+      navigate("/analytics", { state: { result } });
+      setIsLoading(false);
+
+      toast.success("Report Generated Successfully!");
+
+      // In a real app, this would send the data to a backend or AI service
+      console.log({
+        concept,
+        genre,
+        market,
+      });
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+      toast.error(error?.message);
     }
-    setIsLoading(true);
-    const payload = {
-      idea: concept,
-      genre: genre,
-      country: market,
-    };
-
-    const response = await fetch(`${apiUrl}/analyze`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const result = await response.json();
-    navigate("/analytics", { state: { result } });
-    setIsLoading(false);
-
-    toast.success("Report Generated Successfully!");
-
-    // In a real app, this would send the data to a backend or AI service
-    console.log({
-      concept,
-      genre,
-      market,
-    });
   };
 
   return (
